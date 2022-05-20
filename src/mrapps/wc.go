@@ -6,10 +6,13 @@ package main
 // go build -buildmode=plugin wc.go
 //
 
-import "6.824/mr"
-import "unicode"
-import "strings"
-import "strconv"
+import (
+	"strconv"
+	"strings"
+	"unicode"
+
+	"6.824/mr"
+)
 
 //
 // The map function is called once for each file of input. The first
@@ -18,6 +21,8 @@ import "strconv"
 // and look only at the contents argument. The return value is a slice
 // of key/value pairs.
 //
+
+//webbercao : divide content to bucket in hash table
 func Map(filename string, contents string) []mr.KeyValue {
 	// function to detect word separators.
 	ff := func(r rune) bool { return !unicode.IsLetter(r) }
@@ -38,6 +43,8 @@ func Map(filename string, contents string) []mr.KeyValue {
 // map tasks, with a list of all the values created for that key by
 // any map task.
 //
+
+//webbercao: count numbers in hashtable values num
 func Reduce(key string, values []string) string {
 	// return the number of occurrences of this word.
 	return strconv.Itoa(len(values))
